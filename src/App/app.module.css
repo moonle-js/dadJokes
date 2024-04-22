@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: none;
+    box-sizing: border-box;
+}
+.mainSection{
+    display: flex;
+    width: 90%;
+    height: 600px;
+    margin: 0 auto;
+    margin-top: 10vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+    .leftSide{
+        background: lightcoral;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        width: 30%;
+        height: 100%;
+    }
+    span.dad{
+        font-size: 26px;
+        font-weight: 900;
+        color: #fff;
+    }
+    button.newJokes{
+        cursor: pointer;
+        width: 150px;
+        height: 50px;
+        border-radius: 20px;
+        font-size: 16px;
+        font-weight: 900;
+    }
+    img.smile{
+        width: 100px;
+        height: 100px;
+    }
+
+/* RightSide */
+
+.rightSide{
+    display: flex;
+    overflow: scroll;
+    width: 70%;
+    height: 80%;
+    background: #f1f1f1;
+    flex-direction: column;
+    align-items: center;
+}
+    .point{
+        width: 30px;
+        height: 30px;
+        border: 2px solid green;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .rates{
+        display: flex;
+        width: 10%;
+        height: 100%;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .joke{
+        border-bottom: 1px solid lightcyan;
+        display: flex;
+        width: 100%;
+        height: 60px;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+    }
+        .smilik{
+            font-size: 40px;
+        }
+
+        .pointUp,
+        .pointDown{
+            cursor: pointer;
+        }
