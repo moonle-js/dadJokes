@@ -1,50 +1,71 @@
 import { useEffect, useState } from "react"
 import style from "../../app.module.css"
-import Rates from "../rates/rates"
-
-function compareRates(rate){
-    if(rate < 5 && rate > -5){
-        return '&#128528;'
-    }else if (rate <= -5){
-        return '&#128530;'
-    }else if(rate >= 5){
-        return '&#128514;'
-    }
-}
 
 
-export default function Joke(props){
-    const [rate, setRate] = useState(0)
+export default function Joke({setJokes, jokes, text}){
     
-     useEffect(() => {
+    //  useEffect(() => {
+    //     for(let i in jokes){
+    //         if(jokes[i].text == text){
+    //             setJokes(jokes)
+    //         }
+    //     }
+    //  }, [])
 
-        for(let i in props.jokes){
-            if(props.jokes[i].text == props.children){
-                setRate(props.jokes[i].votes)
-                props.setJokes(props.jokes)
+
+     function showRate(){
+        for(let i in jokes){
+            if(jokes[i].text == text){
+                return jokes[i].votes
             }
         }
-     }, [])
+     }
 
+     function compareRates(){
+        if(showRate() >= 0 && showRate() <= 5){
+            return '&#128528;'
+        }else if(showRate() > 5 && showRate() <= 10){
+            return '&#128516;'
+        }else if(showRate() > 10 && showRate() <= 12){
+            return '&#128513;'
+        }else if(showRate() > 12 && showRate() <= 15){
+            return '&#128518;'
+        }else if(showRate() > 15){
+            return '&#128514;'
+        }else{
+            return '&#128545;'
+        }
+     }
+     
 
     function upRate(){
-        for(let i in props.jokes){
-            if(props.jokes[i].text == props.children){
-                props.jokes[i].votes++;
-                setRate(props.jokes[i].votes)
-                props.setJokes(props.jokes)
+        setJokes(jokes => {
+            for(let i in jokes){
+                if(jokes[i].text == text){
+                    jokes[i].votes = jokes[i].votes+1;
+                    
+                    localStorage.setItem('jokes', JSON.stringify(jokes))
+                }
             }
-        }
+
+            return [...jokes]
+        })
+
+        
     }
 
     function downRate(){
-        for(let i in props.jokes){
-            if(props.jokes[i].text == props.children){
-                props.jokes[i].votes--;
-                setRate(props.jokes[i].votes)
-                props.setJokes(props.jokes)
+        setJokes(jokes => {
+            for(let i in jokes){
+                if(jokes[i].text == text){
+                    jokes[i].votes = jokes[i].votes-1;
+                    
+                    localStorage.setItem('jokes', JSON.stringify(jokes))
+                }
             }
-        }
+
+            return [...jokes]
+        })
     }
 
 
@@ -54,22 +75,22 @@ export default function Joke(props){
 
                 <div className={style.rates}>
                     <span onClick={downRate} className={style.pointUp}>
-                        &#8593;
+                        &#8595;
                     </span>
                     <div className={style.point}>
-                        {rate}
+                        {showRate()}
                     </div>
                     <span onClick={upRate} className={style.pointDown}>
                         &#8593;
                     </span>
                 </div>
 
-                <span>
-                    {props.children}
+                <span className={style.jokeText}>
+                    {text}
                 </span>
 
                 <span 
-                dangerouslySetInnerHTML={{__html:compareRates(rate)}} 
+                dangerouslySetInnerHTML={{__html:compareRates()}} 
                 className={style.smilik}>   
                 </span>
             </div>

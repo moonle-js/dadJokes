@@ -5,9 +5,8 @@ import axios from "axios";
 import {v4 as uuid} from 'uuid'
 
 
-export default function RightSide(){
+export default function RightSide({jokes, setJokes}){
     
-    const [jokes, setJokes] = useState(JSON.parse(localStorage.getItem('jokes')) || []);
 
     const getJokes = async () => {
         try{
@@ -24,10 +23,14 @@ export default function RightSide(){
 
         async function run(){
             let jokes = []
-            console.log('salam')
             for(let i = 0; i < 10; i++){
                 const zarafat = await getJokes()
-                jokes.push({id: uuid(), text:zarafat, votes: 0})
+                if(!jokes.includes(zarafat)){
+                    jokes.push({id: uuid(), text:zarafat, votes: 0})
+                }else{
+                    console.log('var idi')
+                    i--
+                }
             }
             setJokes(jokes)
             window.localStorage.setItem('jokes', JSON.stringify(jokes))
@@ -35,18 +38,20 @@ export default function RightSide(){
 
         if(!localStorage.getItem('jokes') || localStorage.getItem('jokes') == null){
             run()
-            console.log(jokes)
         }else{
             return
         }
     }
-    ,[jokes])
+    ,[])
         
 
     return(
         <>
             <div className={style.rightSide}>
-                {jokes.sort((a,b) => a.votes - b.votes).map((item, index) => <Joke setJokes={setJokes}  jokes={jokes} key={index} >{item.text}</Joke> )}
+                {jokes.sort((a,b) => b.votes - a.votes)
+                    .map((item, index) => 
+                    <Joke setJokes={setJokes}  jokes={jokes} text={item.text} key={index}>{item.text}</Joke> )
+                }
             </div>
         </>
     )

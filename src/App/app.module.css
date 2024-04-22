@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
+    font-family: "Montserrat";
     margin: 0;
     padding: 0;
     outline: 0;
     border: none;
     box-sizing: border-box;
+}
+body{
+    background: linear-gradient(45deg, #45F8F0, #E05C1E);
+    min-height: 90vh;
 }
 .mainSection{
     display: flex;
@@ -12,10 +19,12 @@
     margin: 0 auto;
     margin-top: 10vh;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
     .leftSide{
+        max-width: 400px;
+        border-radius: 15px;
         background: lightcoral;
         display: flex;
         flex-direction: column;
@@ -52,12 +61,19 @@
     background: #f1f1f1;
     flex-direction: column;
     align-items: center;
+    position: relative;
+    max-width: 800px;
 }
+
+.rightSide::-webkit-scrollbar{
+    width: 0%;
+}
+
     .point{
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border: 2px solid green;
-        border-radius: 20px;
+        border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -80,9 +96,50 @@
     }
         .smilik{
             font-size: 40px;
+            width: 10%;
+        }
+        .jokeText{
+            width: 70%;
         }
 
         .pointUp,
         .pointDown{
+            font-size: 22px;
+            font-family: "Roboto";
+            font-weight: 500;
             cursor: pointer;
         }
+
+    @media screen and (max-width: 500px){
+        body{
+            min-height: 99vh;
+        }
+        .mainSection{
+            margin-top: 1vh;
+            flex-direction: column;
+        }
+            .leftSide{
+                width: 90%;
+                min-height: 250px !important;
+            }
+            .rightSide{
+                width: 90%;
+                min-height: 60vh;
+                margin-top: 5vh;
+            }
+                .joke{
+                    height: auto;
+                    padding: 10px;
+                    width: 100%;
+                }
+                    .rates{
+                        width: 20%;
+                    }
+                    .jokeText{
+                        width: 50%;
+                    }
+                    .smilik{
+                        width: 20%;
+                    }
+
+                        }

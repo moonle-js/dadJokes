@@ -1,7 +1,7 @@
 import smile from "../../../images/smile.svg"
 import style from "../../app.module.css"
 
-export default function LeftSide(){
+export default function LeftSide({setNewJokes}){
     return(
         <>
             <div className={style.leftSide}>
@@ -13,7 +13,7 @@ export default function LeftSide(){
                     
                 </img>
 
-                <button className={style.newJokes}>
+                <button onClick={setNewJokes} className={style.newJokes}>
                     New Jokes
                 </button>
             </div>
