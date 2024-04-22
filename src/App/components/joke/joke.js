@@ -77,7 +77,13 @@ export default function Joke({setJokes, jokes, text}){
                     <span onClick={downRate} className={style.pointUp}>
                         &#8595;
                     </span>
-                    <div className={style.point}>
+                    <div className={
+                        compareRates() == '&#128528;' ? style.qirmizi : 
+                        compareRates() == '&#128516;' ? style.narinci : 
+                        compareRates() == '&#128513;' ? style.narinci :
+                        compareRates() == '&#128518;' ? style.yasil :
+                        compareRates() == '&#128514;' ? style.yasil :
+                        style.qirmizi}>
                         {showRate()}
                     </div>
                     <span onClick={upRate} className={style.pointDown}>

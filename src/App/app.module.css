@@ -69,10 +69,28 @@ body{
     width: 0%;
 }
 
-    .point{
+    .yasil{
         width: 40px;
         height: 40px;
         border: 2px solid green;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .narinci{
+        width: 40px;
+        height: 40px;
+        border: 2px solid orange;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .qirmizi{
+        width: 40px;
+        height: 40px;
+        border: 2px solid red;
         border-radius: 50%;
         display: flex;
         justify-content: center;
